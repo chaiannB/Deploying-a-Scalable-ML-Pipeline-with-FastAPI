@@ -134,6 +134,7 @@ def performance_on_categorical_slice(
         # for input data, use data in column given as "column_name", with the slice_value 
         # use training = False
         X = df["column_name"],
+        categorical_features=cat_features,
         training = False
     )
     preds = inference(model, X_slice) # your code here to get prediction on X_slice using the inference function
