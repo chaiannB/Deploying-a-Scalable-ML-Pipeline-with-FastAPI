@@ -13,10 +13,10 @@ from ml.model import (
     train_model,
 )
 # TODO: load the census.csv data
-project_path = "./cheyenne/Deploying-a-Scalable-ML-Pipeline-with-FastAPI"
+project_path = "Deploying-a-Scalable-ML-Pipeline-with-FastAPI"
 data_path = os.path.join(project_path, "data", "census.csv")
 print(data_path)
-data = pd.read_csv("census.csv") # your code here
+data = pd.read_csv("data/census.csv") # your code here
 
 # TODO: split the provided data to have a train dataset and a test dataset
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
@@ -58,9 +58,9 @@ X_test, y_test, _, _ = process_data(
 model = train_model(X_train, y_train) # your code here
 
 # save the model and the encoder
-model_path = os.path.join(project_path, "model", "model.pkl")
+model_path = os.path.join("model", "model.pkl")
 save_model(model, model_path)
-encoder_path = os.path.join(project_path, "model", "encoder.pkl")
+encoder_path = os.path.join("model", "encoder.pkl")
 save_model(encoder, encoder_path)
 
 # load the model
@@ -69,7 +69,7 @@ model = load_model(
 ) 
 
 # TODO: use the inference function to run the model inferences on the test dataset.
-preds = inference(model, X) # your code here
+preds = inference(model, X_test) # your code here
 
 # Calculate and print the metrics
 p, r, fb = compute_model_metrics(y_test, preds)
@@ -84,11 +84,12 @@ for col in cat_features:
         p, r, fb = performance_on_categorical_slice(
             test,
             col,
-            slice_value,
+            slicevalue,
             categorical_features=cat_features,
-            training = False,
+            label = X["column_name"],
             encoder = encoder,
-            lb = lb, # your code here
+            lb = lb,
+            model= model # your code here
             # use test, col and slicevalue as part of the input
         )
         with open("slice_output.txt", "a") as f:
