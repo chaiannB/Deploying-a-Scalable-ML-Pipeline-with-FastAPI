@@ -128,13 +128,16 @@ def performance_on_categorical_slice(
 
     """
     # TODO: implement the function
-    X_slice, y_slice, encoder, lb = process_data(
+    X_slice, y_slice, _, _ = process_data(
         # your code here
         # for input data, use data in column given as "column_name", with the slice_value 
         # use training = False
-        X = slicevalue["column_name"],
-        categorical_features=cat_features,
-        training = False
+        data[data[column_name]==slice_value],
+        categorical_features=categorical_features,
+        label=label,
+        training = False,
+        encoder=encoder,
+        lb=lb
     )
     preds = inference(model, X_slice) # your code here to get prediction on X_slice using the inference function
     precision, recall, fbeta = compute_model_metrics(y_slice, preds)

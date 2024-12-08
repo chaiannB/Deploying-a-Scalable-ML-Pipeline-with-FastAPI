@@ -86,7 +86,7 @@ for col in cat_features:
             col,
             slicevalue,
             categorical_features=cat_features,
-            label = X["column_name"],
+            label = "salary",
             encoder = encoder,
             lb = lb,
             model= model # your code here
