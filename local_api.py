@@ -6,7 +6,7 @@ import requests
 r = None # Your code here
 
 # TODO: print the status code
-# print()
+print()
 # TODO: print the welcome message
 # print()
 
